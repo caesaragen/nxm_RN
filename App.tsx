@@ -11,50 +11,21 @@ import {
   Button,
   TouchableOpacity,
 } from "react-native";
+import Login from "./screens/Login";
+// import { NavigationContainer } from "@react-navigation/native";
+// import { createStackNavigator } from "@react-navigation/stack";
+// import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+// import { createDrawerNavigator } from "@react-navigation/drawer";
+// import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
+
+
 const App: React.FC = () => {
   const [userName , setUserName] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [show, setShow] = React.useState(false);
   return (
     <NativeBaseProvider>
-      <View style={styles.container}>
-        <StatusBar style="auto" />
-        <Stack space={4} w="75%" maxW="300px" mx="auto">
-          <Input
-            variant="underlined"
-            placeholder="Username"
-            placeholderTextColor={"#70B5F9"}
-            onChangeText={(userName) => setUserName(userName)}
-            InputLeftElement={<Icon as={<MaterialIcons name="person" />} size={5} mr="2" color="muted.400" />}
-          />
-          <Input
-            variant="underlined"
-            placeholder="Password"
-            placeholderTextColor={"#70B5F9"}
-            secureTextEntry={true}
-            onChangeText={(password) => setPassword(password)}
-            InputLeftElement={<Icon as={<MaterialIcons name="lock" />} size={5} mr="2" color="muted.400" />}
-          />
-          <TouchableOpacity style={styles.loginBtn}>
-            <Text style={styles.loginText}>LOGIN</Text>
-          </TouchableOpacity>
-        </Stack>
-        <Stack space={4} w="75%" maxW="300px" >
-          <Center>
-          <Text style={styles.logoutText}>
-            Proceed to sign-out?
-          </Text>
-          </Center>
-        <HStack space={4} w="100%" maxW="300px" mx="auto" justifyContent="space-between">
-        <TouchableOpacity style={styles.logoutBtn}>
-            <Text style={styles.loginText}>Yes</Text>
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.logoutBtn}>
-            <Text style={styles.loginText}>Cancel</Text>
-          </TouchableOpacity>
-        </HStack>
-        </Stack>
-      </View>
+    <Login />
     </NativeBaseProvider>
   );
 }
