@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
-import { Input, Icon, Stack, Pressable, Center, NativeBaseProvider } from "native-base";
+import { Input, Icon, Stack, NativeBaseProvider, Center, HStack } from "native-base";
 import { MaterialIcons } from "@expo/vector-icons";
 import {
   StyleSheet,
@@ -12,24 +12,25 @@ import {
   TouchableOpacity,
 } from "react-native";
 const App: React.FC = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [userName , setUserName] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [show, setShow] = React.useState(false);
   return (
     <NativeBaseProvider>
       <View style={styles.container}>
-        {/* <Image style={styles.image} source={require("./assets/log2.png")} />  */}
         <StatusBar style="auto" />
         <Stack space={4} w="75%" maxW="300px" mx="auto">
           <Input
             variant="underlined"
             placeholder="Username"
-            onChangeText={(email) => setEmail(email)}
+            placeholderTextColor={"#70B5F9"}
+            onChangeText={(userName) => setUserName(userName)}
             InputLeftElement={<Icon as={<MaterialIcons name="person" />} size={5} mr="2" color="muted.400" />}
           />
           <Input
             variant="underlined"
             placeholder="Password"
+            placeholderTextColor={"#70B5F9"}
             secureTextEntry={true}
             onChangeText={(password) => setPassword(password)}
             InputLeftElement={<Icon as={<MaterialIcons name="lock" />} size={5} mr="2" color="muted.400" />}
@@ -38,8 +39,21 @@ const App: React.FC = () => {
             <Text style={styles.loginText}>LOGIN</Text>
           </TouchableOpacity>
         </Stack>
-
-
+        <Stack space={4} w="75%" maxW="300px" >
+          <Center>
+          <Text style={styles.logoutText}>
+            Proceed to sign-out?
+          </Text>
+          </Center>
+        <HStack space={4} w="100%" maxW="300px" mx="auto" justifyContent="space-between">
+        <TouchableOpacity style={styles.logoutBtn}>
+            <Text style={styles.loginText}>Yes</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.logoutBtn}>
+            <Text style={styles.loginText}>Cancel</Text>
+          </TouchableOpacity>
+        </HStack>
+        </Stack>
       </View>
     </NativeBaseProvider>
   );
@@ -55,28 +69,7 @@ const styles = StyleSheet.create({
   image: {
     marginBottom: 40,
   },
-  inputView: {
-    // backgroundColor: "#FFC0CB",
-    borderRadius: 30,
-    width: "70%",
-    height: 45,
-    marginBottom: 20,
-    borderBottomColor: "#333",
-    alignItems: "center",
-  },
-  TextInput: {
-    height: 50,
-    flex: 1,
-    padding: 10,
-    marginLeft: 20,
-    borderBottomColor: "#333",
-  },
-  forgot_button: {
-    height: 30,
-    marginBottom: 30,
-  },
   loginBtn: {
-    // width: "80%",
     maxWidth: 300,
     borderRadius: 10,
     height: 50,
@@ -89,4 +82,20 @@ const styles = StyleSheet.create({
   loginText: {
     color: "#fff",
   },
+  logoutText: {
+    color: "#70B5F9",
+    fontSize: 20,
+    marginTop: 20,
+    fontWeight: "bold",
+  },
+  logoutBtn: {
+    width: 140,
+    borderRadius: 10,
+    height: 50,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 40,
+    backgroundColor: "#70B5F9",
+    color: "#fff",
+  }
 });
